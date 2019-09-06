@@ -1,0 +1,92 @@
+object roberto {
+	var pesoRoberto = 60
+	var vehiculo
+	var paquete = true
+	method peso(){
+		return vehiculo.peso(pesoRoberto)
+	}
+	method cambiarVehiculo(nuevo){
+		vehiculo = nuevo
+	}
+	method vehiculo(){
+		return vehiculo
+	}
+	method paquete(){
+		return paquete
+	}
+}
+
+object bici {
+	method peso(anterior){
+		return anterior + 1
+	}
+}
+
+object camion {
+	var cantAcoplado
+	method cambiarAcoplado(nuevo){
+		cantAcoplado = nuevo
+	}
+	method peso(anterior){
+		return anterior + (500*cantAcoplado)
+	}
+}
+
+object chuck {
+	var pesoChuck = 900
+	var paquete = true
+	method peso(){
+		return pesoChuck
+	}
+	method llamar(){
+		return true
+	}
+	method paquete(){
+		return paquete
+	}
+}
+
+object neo {
+	var credito = 100
+	var paquete = true
+	method llamar(){
+		return credito > 0
+	}
+	method cambiarCredito(nuevo){
+		credito = nuevo
+	}
+	method peso(){
+		return 0
+	}
+	method paquete(){
+		return paquete
+	}
+}
+
+object puenteBrooklyn {
+	method pasar(alguien){
+		return ((alguien.peso() <= 1000) && (alguien.paquete()))
+	}
+}
+
+object matrix {
+	method pasar(alguien){
+		return alguien.llamar()
+	}
+}
+
+object empresa{
+	var empleados =[]
+	method contratar(persona){
+		empleados = empleados + [persona]
+	}
+	method empleados(){
+		return empleados
+	}
+	method despedirTodos(){
+		empleados = []
+	}
+	method esGrande(){
+		return empleados.size () > 2
+	}
+}
