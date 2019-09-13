@@ -1,0 +1,142 @@
+object roberto {
+	var peso = 90
+	var transporte = camion
+
+	method peso() {
+		return peso + transporte.peso()
+	}
+	method transporte(vehiculo) {
+		transporte = vehiculo
+	}
+	method tieneCredito() {
+		return false
+	}
+}
+
+object camion {
+	var acoplados = 2
+
+	method peso() {
+		return acoplados * 500
+	}
+	method acoplados(cantAcoplados) {
+		acoplados = cantAcoplados
+	}
+}
+
+object bicicleta {
+	method peso() {
+		return 1
+	}
+}
+
+object chuck{
+	var peso = 900
+	method tieneCredito(){
+		return true
+	}
+	method peso(){
+		return peso
+	}
+}
+
+object neo{
+	var credito = 0
+	method peso(){
+		return 0
+	}
+	method cargarCredito(x){
+		credito += x
+	}
+	method tieneCredito(){
+		credito -= 5
+		return (credito > 0)
+	}
+}
+
+object brooklyn {
+	method dejarPasar(mensajero) {
+		return (mensajero.peso() < 1000)
+	}
+}
+
+object matrix{
+	method dejarPasar(mensajero){
+		return (mensajero.tieneCredito())
+	}
+}
+
+object paquete {
+	var pago = false
+	var destino = brooklyn
+
+	method pagar() {
+		pago = true
+	}
+	method estaPago() {
+		return pago
+	}
+	method destino(lugar) {
+		destino = lugar
+	}
+	method entregadoPor(mensajero) {
+		return destino.dejarPasar(mensajero) and self.estaPago()
+	}
+}
+
+object empresa{
+	var empleados =[]
+	method contratar(persona){
+		empleados = empleados + [persona]
+	}
+	method empleados(){
+		return empleados
+	}
+	method despedirTodos(){
+		empleados = []
+	}
+	method esGrande(){
+		return empleados.size () > 2
+	}
+	method despedirA(persona){
+		if(empleados.contains(persona)){
+			empleados.remove(persona)
+		}
+	}
+	method primeroPuede(destino){
+		
+	}
+	method pesoUltimo(){
+		return (empleados.last()).peso()
+	}
+}
+
+object paquetito{
+	var pago = true
+	method entregadoPor(mensajero){
+		return true
+	}
+}
+
+object paqueton{
+	var destinos = []
+	var precio = 50
+	method pagar(pagoParcial){
+		precio -= pagoParcial
+	}
+	method estaPago(){
+		return (precio==0)
+	}
+	method precio(){
+		precio = 100*(destinos.size())
+	}
+	method entregadoPor(mensajero){
+		return ((self.estaPago()) and (self.todosLosDestinos(mensajero)))
+	}
+	method agregarDestino(x){
+		destinos.add(x)
+	}
+	method todosLosDestinos(mensajero){
+		return (destinos.all({x=>x.dejarPasar(mensajero)}))
+	}
+}
